@@ -1,4 +1,5 @@
 🟡 Privilege Escalation
+
 📌 Description
 
 After gaining access, the attacker obtained elevated privileges within the system.
