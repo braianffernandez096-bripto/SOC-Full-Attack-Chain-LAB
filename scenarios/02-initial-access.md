@@ -1,4 +1,5 @@
 🟠 Initial Access
+
 📌 Description
 
 Following the brute force attack, a successful authentication was observed, indicating that valid credentials were obtained.
