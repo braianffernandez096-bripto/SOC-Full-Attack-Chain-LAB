@@ -1,4 +1,5 @@
 🟣 Persistence
+
 📌 Description
 
 The attacker established persistence by creating a new user and adding it to the administrators group.
