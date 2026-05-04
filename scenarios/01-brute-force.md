@@ -1,4 +1,5 @@
 🔴 Brute Force Attack
+
 📌 Description
 
 This stage simulates a brute force attack against a Windows endpoint, where multiple failed authentication attempts are performed in a short period of time.
