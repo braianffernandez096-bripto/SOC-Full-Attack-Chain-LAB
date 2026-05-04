@@ -1,4 +1,5 @@
 🔵 Lateral Movement
+
 📌 Description
 
 The attacker attempted to move laterally within the network using SMB protocol.
