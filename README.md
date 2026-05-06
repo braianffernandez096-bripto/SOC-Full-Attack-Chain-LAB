@@ -16,14 +16,21 @@ The attack begins with a brute force attempt against a Windows system, followed 
 The objective is to detect and correlate each stage using SIEM and network analysis.
 
 🔴 Attack Stages
+
 Brute Force (Event ID 4625)
+
 Successful Login (Event ID 4624)
+
 Privilege Escalation (Event ID 4672)
+
 User Creation & Persistence (Event ID 4720 / 4732)
+
 Lateral Movement via SMB (Port 445)
+
 Remote Execution (Event ID 7045 / 4688)
 
 📡 Detection Approach
+
 Detection was performed using:
 
 Elastic SIEM (log correlation)
@@ -33,10 +40,15 @@ Sysmon (endpoint telemetry)
 Wireshark (network analysis)
 
 🧩 MITRE ATT&CK
+
 T1110 — Brute Force
+
 T1078 — Valid Accounts
+
 T1021 — Remote Services
+
 T1059 — Command Execution
+
 T1136 — Create Account
 
 🚨 Impact
@@ -44,8 +56,11 @@ T1136 — Create Account
 The attacker achieved:
 
 Unauthorized access
+
 Privilege escalation
+
 Lateral movement
+
 Remote code execution
 
 👉 Full compromise of the endpoint.
