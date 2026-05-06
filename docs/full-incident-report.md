@@ -62,7 +62,9 @@ event.code:4720 OR event.code:4732
 event.code:7045 OR event.code:4688
 
 
+
 🧩 MITRE ATT&CK Mapping
+
 
 T1110 — Brute Force
 
