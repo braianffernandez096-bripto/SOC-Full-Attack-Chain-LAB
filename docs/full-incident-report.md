@@ -21,11 +21,17 @@ Finally, persistence was established by creating a new user account and adding i
 
 🕒 Attack Timeline
 Stage	Event	Description
+
 Brute Force	4625	Multiple failed logons
+
 Initial Access	4624	Successful login (Logon Type 3)
+
 Privilege Escalation	4672	Admin privileges assigned
+
 Persistence	4720 / 4732	User creation + admin group
+
 Lateral Movement	SMB (445)	Access to IPC$ / C$
+
 Remote Execution	7045 / 4688	Service + process execution
 
 📡 Evidence Correlation
@@ -40,16 +46,24 @@ This multi-layer correlation confirms attacker activity across the environment.
 
 🔍 Detection Logic
 event.code:4625
+
 event.code:4624 AND winlog.event_data.LogonType:3
+
 event.code:4672
+
 event.code:4720 OR event.code:4732
+
 event.code:7045 OR event.code:4688
 
 🧩 MITRE ATT&CK Mapping
 T1110 — Brute Force
+
 T1078 — Valid Accounts
+
 T1021 — Remote Services (SMB)
+
 T1059 — Command Execution
+
 T1136 — Create Account
 
 🚨 Impact Assessment
@@ -57,9 +71,13 @@ T1136 — Create Account
 The attacker successfully achieved:
 
 Unauthorized access
+
 Privilege escalation
+
 Lateral movement
+
 Remote code execution
+
 Persistence within the system
 
 👉 This represents a full compromise of the endpoint.
@@ -78,8 +96,13 @@ The visibility provided by SIEM, endpoint telemetry and network monitoring was e
 
 🔐 Recommendations
 Implement account lockout policies to mitigate brute force attacks
+
 Monitor privilege escalation events (Event ID 4672)
+
 Restrict SMB access and administrative shares
+
 Monitor service creation events (Event ID 7045)
+
 Apply least privilege principle
+
 Enhance alerting rules in SIEM
