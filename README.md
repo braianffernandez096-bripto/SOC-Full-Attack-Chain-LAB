@@ -1,71 +1,69 @@
 # SOC-Full-Attack-Chain-LAB
-Laboratorio de ataque en cadena completo para SOC
+Full Attack Chain Lab for SOC
 
-Laboratorio SOC que simula un ataque en cadena completo (detección mediante Elastic Stack: fuerza bruta, movimiento lateral, ejecución remota) que incluye:
+A SOC lab simulating a full attack chain (detection via Elastic Stack: brute force, lateral movement, remote execution), featuring:
 
-🛡️ Laboratorio de ataque en cadena completo para SOC — Detección de extremo a extremo
+🛡️ Full Attack Chain Lab for SOC — End-to-End Detection
 
-📌 Descripción general
+📌 Overview
 
-Este proyecto simula un ataque en cadena completo desde la perspectiva de un SOC (Centro de Operaciones de Seguridad), centrándose en la detección y el análisis del comportamiento del atacante.
+This project simulates a full attack chain from the perspective of a SOC (Security Operations Center), focusing on the detection and analysis of attacker behavior.
 
-El laboratorio se construyó utilizando Elastic Stack (SIEM), Sysmon y Winlogbeat, con un endpoint Windows 10 (máquina cliente) y Kali Linux como máquina atacante.
+The lab was built using Elastic Stack (SIEM), Sysmon, and Winlogbeat, with a Windows 10 endpoint (client machine) and Kali Linux as the attacker machine.
 
-🧠 Escenario
+🧠 Scenario
 
-El ataque comienza con un intento de fuerza bruta contra un sistema Windows, seguido de una autenticación exitosa, escalada de privilegios, movimiento lateral mediante SMB y ejecución remota.
+The attack begins with a brute-force attempt against a Windows system, followed by successful authentication, privilege escalation, lateral movement via SMB, and remote execution.
 
-El objetivo es detectar y correlacionar cada etapa utilizando el SIEM y el análisis de red.
+The objective is to detect and correlate each stage using the SIEM and network analysis. 🔴 Attack stages
 
-🔴 Etapas del ataque
+Brute force (Event ID 4625)
 
-Fuerza bruta (ID de evento 4625)
+Successful login (Event ID 4624)
 
-Inicio de sesión exitoso (ID de evento 4624)
+Privilege escalation (Event ID 4672)
 
-Escalada de privilegios (ID de evento 4672)
+User creation and persistence (Event ID 4720 / 4732)
 
-Creación de usuario y persistencia (ID de evento 4720 / 4732)
+Lateral movement via SMB (Port 445)
 
-Movimiento lateral mediante SMB (Puerto 445)
+Remote execution (Event ID 7045 / 4688)
 
-Ejecución remota (ID de evento 7045 / 4688)
+📡 Detection approach
 
-📡 Enfoque de detección
+Detection was performed using:
 
-La detección se realizó utilizando:
+Elastic SIEM (log correlation)
 
-Elastic SIEM (correlación de registros)
+Sysmon (endpoint telemetry)
 
-Sysmon (telemetría de endpoint)
-
-Wireshark (análisis de red)
+Wireshark (network analysis)
 
 🧩 MITRE ATT&CK
 
-T1110 — Fuerza bruta
+T1110 — Brute Force
 
-T1078 — Cuentas válidas
+T1078 — Valid Accounts
 
-T1021 — Servicios remotos
+T1021 — Remote Services
 
-T1059 — Ejecución de comandos
+T1059 — Command Execution
 
-T1136 — Creación de cuentas
+T1136 — Account Creation
 
-🚨 Impacto
+🚨 Impact
 
-El atacante logró:
+The attacker achieved:
 
-Acceso no autorizado
+Unauthorized access
 
-Escalada de privilegios
+Privilege escalation
 
-Movimiento lateral
+Lateral movement
 
-Ejecución remota de código
+Remote code execution
 
-👉 Compromiso total del endpoint. 
+👉 Full endpoint compromise.
 
-💡 Conclusión:
-Este laboratorio demuestra cómo se puede reconstruir un ataque en cadena completo correlacionando eventos de múltiples fuentes de datos.
+💡 Conclusion:
+This lab demonstrates how a full attack chain can be reconstructed by correlating events from multiple data sources.
