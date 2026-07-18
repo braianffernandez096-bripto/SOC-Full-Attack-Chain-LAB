@@ -67,5 +67,5 @@ Ejecución remota de código
 
 👉 Compromiso total del endpoint. 
 
-💡 Conclusión
+💡 Conclusión:
 Este laboratorio demuestra cómo se puede reconstruir un ataque en cadena completo correlacionando eventos de múltiples fuentes de datos.
