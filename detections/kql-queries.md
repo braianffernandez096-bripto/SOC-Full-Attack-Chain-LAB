@@ -11,7 +11,7 @@ event.code:4625
 High frequency of these events in a short period may indicate a brute force attack.
 
 🟠 Successful Login After Brute Force
-event.code:4624 AND winlog.event_data.LogonType:3
+event.code:4624 AND winlog.event_data.LogonType: 3
 
 Indicates successful authentication over the network, potentially after password guessing.
 
