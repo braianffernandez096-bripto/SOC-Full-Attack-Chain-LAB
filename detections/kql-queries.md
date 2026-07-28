@@ -6,7 +6,7 @@ This section contains detection logic used to identify each stage of the attack 
 
 Detect multiple failed login attempts:
 
-event.code:4625
+event.code: 4625
 
 High frequency of these events in a short period may indicate a brute force attack.
 
