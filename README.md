@@ -110,8 +110,6 @@ Remote Execution
 
 ---
 
----
-
 ## 🔍 Detection Logic
 
 Rather than relying on a single alert, the investigation focused on correlating multiple telemetry sources to reconstruct the attack chain.
@@ -138,6 +136,8 @@ The following data sources were analyzed throughout the investigation:
 5. Process creation and network activity collected by Sysmon were correlated with SMB traffic captured in Wireshark to validate remote execution and attacker movement.
 
 This correlation allowed the complete attack chain to be reconstructed with a high level of confidence.
+
+---
 
 🧩 MITRE ATT&CK
 
