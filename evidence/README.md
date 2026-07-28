@@ -1,5 +1,3 @@
-Ahora veamos el README.md de wireshark:
-
 📊 Evidence Overview
 
 This directory contains the evidence collected throughout the simulated attack investigation.
