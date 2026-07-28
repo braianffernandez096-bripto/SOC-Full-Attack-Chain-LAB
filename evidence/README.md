@@ -44,6 +44,8 @@ This telemetry provides visibility into attacker activity on the compromised end
 
 The incident was reconstructed by correlating evidence from multiple telemetry sources.
 
+```text
+
 Windows Security Logs
         │
         ▼
@@ -57,6 +59,8 @@ Windows Security Logs
         │
         ▼
 Incident Reconstruction
+
+```
 
 🔒 Data Handling
 
