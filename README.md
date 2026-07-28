@@ -137,6 +137,23 @@ The following data sources were analyzed throughout the investigation:
 
 This correlation allowed the complete attack chain to be reconstructed with a high level of confidence.
 
+### Investigation Flow
+
+```text
+Windows Security Logs
+          │
+          ▼
+       Sysmon
+          │
+          ▼
+     Elastic SIEM
+          │
+          ▼
+     Wireshark
+          │
+          ▼
+Attack Reconstruction
+
 ---
 
 🧩 MITRE ATT&CK
