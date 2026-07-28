@@ -155,44 +155,6 @@ Windows Security Logs
 Attack Reconstruction
 
 ```
----
-
----
-
-## 📂 Repository Structure
-
-```text
-SOC-Full-Attack-Chain-LAB
-│
-├── README.md
-│
-├── detections/
-│   └── kql-queries.md
-│
-├── scenarios/
-│   └── attack-chain.md
-│
-├── evidence/
-│   ├── elastic/
-│   ├── wireshark/
-│   └── screenshots/
-│
-├── reports/
-│   └── incident-report.pdf
-│
-└── configs/
-    ├── sysmon/
-    └── winlogbeat/
-```
-### Repository Contents
-
-| Folder | Description |
-|---------|-------------|
-| **detections/** | KQL queries used during threat detection and investigation |
-| **scenarios/** | Attack simulation scenarios and lab documentation |
-| **evidence/** | Elastic SIEM and Wireshark screenshots collected during the investigation |
-| **reports/** | Technical incident reports documenting each attack scenario |
-| **configs/** | Configuration files used for Sysmon and Winlogbeat |
 
 ---
 
