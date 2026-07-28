@@ -206,8 +206,6 @@ This project demonstrates practical experience across multiple areas of Security
 
 ---
 
----
-
 ## 🚨 Impact Assessment
 
 The investigation confirmed that the simulated attacker successfully progressed through multiple stages of the attack lifecycle, resulting in a complete compromise of the target endpoint.
@@ -227,6 +225,8 @@ The following activities were observed during the investigation:
 The attack demonstrates how an adversary can transition from initial access to full endpoint compromise by chaining together multiple techniques.
 
 The investigation also highlights the value of correlating endpoint telemetry, authentication events, and network evidence to accurately reconstruct attacker activity throughout the incident.
+
+---
 
 ## 💡 Lessons Learned
 
