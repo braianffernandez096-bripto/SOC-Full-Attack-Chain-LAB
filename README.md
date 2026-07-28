@@ -72,7 +72,7 @@ Detection & Investigation
 The objective of this lab was to simulate a realistic attack against a Windows endpoint and reconstruct each stage of the intrusion using endpoint telemetry and network evidence.
 
 The investigation focused on correlating Windows Security Events, Sysmon telemetry, Elastic SIEM detections, and Wireshark packet captures to identify attacker activity throughout the entire attack lifecycle.
----
+
 
 ## 🕒 Attack Timeline
 
