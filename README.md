@@ -12,10 +12,13 @@ This project simulates a full attack chain from the perspective of a SOC (Securi
 The lab was built using Elastic Stack (SIEM), Sysmon, and Winlogbeat, with a Windows 10 endpoint (client machine) and Kali Linux as the attacker machine.
 
 
-🏗️ Lab Architecture
+---
+
+## 🏗️ Lab Architecture
 
 The lab was designed to simulate a realistic enterprise environment where endpoint telemetry and network traffic can be collected, centralized, and analyzed through a SIEM.
 
+```text
                  Kali Linux
                       │
       SMB / PowerShell / HTTP Simulations
@@ -39,7 +42,7 @@ The lab was designed to simulate a realistic enterprise environment where endpoi
 +-----------------------------------------------+
 ```
 
-Environment
+### Environment
 
 | Machine | Role | Main Components |
 |----------|------|-----------------|
@@ -47,7 +50,7 @@ Environment
 | **Windows 10** | Victim Endpoint | Sysmon, Winlogbeat, Windows Security Logs |
 | **Ubuntu Server** | SIEM Platform | Elasticsearch, Kibana |
 
-Data Flow
+### Data Flow
 
 ```
 Attack Simulation
