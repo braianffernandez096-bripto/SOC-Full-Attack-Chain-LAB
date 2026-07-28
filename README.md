@@ -170,6 +170,34 @@ T1059 — Command Execution
 
 T1136 — Account Creation
 
+---
+
+## 📊 Skills Demonstrated
+
+This project demonstrates practical experience across multiple areas of Security Operations (SOC), including endpoint monitoring, event correlation, threat detection, and incident investigation.
+
+| Category | Skills Demonstrated |
+|----------|---------------------|
+| **SIEM** | Elastic Stack (Elasticsearch & Kibana) |
+| **Endpoint Monitoring** | Sysmon |
+| **Log Collection** | Winlogbeat |
+| **Threat Detection** | Behavioral analysis and event correlation |
+| **Incident Investigation** | Attack timeline reconstruction |
+| **Network Analysis** | Wireshark packet analysis |
+| **Authentication Analysis** | Windows Security Event investigation |
+| **Frameworks** | MITRE ATT&CK Mapping |
+
+### Core Competencies
+
+- Security Monitoring
+- Threat Detection
+- Event Correlation
+- Incident Investigation
+- Endpoint Telemetry Analysis
+- Network Traffic Analysis
+- IOC Identification
+- MITRE ATT&CK Mapping
+
 🚨 Impact
 
 The attacker achieved:
