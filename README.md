@@ -204,19 +204,42 @@ This project demonstrates practical experience across multiple areas of Security
 - IOC Identification
 - MITRE ATT&CK Mapping
 
-🚨 Impact
+---
 
-The attacker achieved:
+---
 
-Unauthorized access
+## 🚨 Impact Assessment
 
-Privilege escalation
+The investigation confirmed that the simulated attacker successfully progressed through multiple stages of the attack lifecycle, resulting in a complete compromise of the target endpoint.
 
-Lateral movement
+The following activities were observed during the investigation:
 
-Remote code execution
+| Impact | Evidence |
+|--------|----------|
+| **Unauthorized Access** | Successful authentication after multiple failed logon attempts (Event ID 4624) |
+| **Privilege Escalation** | Administrative privileges assigned (Event ID 4672) |
+| **Persistence** | Local administrator account created and added to the Administrators group (Event IDs 4720 / 4732) |
+| **Lateral Movement** | SMB communications and remote execution activity |
+| **Command Execution** | Process creation events and service execution (Event ID 4688 / 7045) |
 
-👉 Full endpoint compromise.
+### Security Assessment
+
+The attack demonstrates how an adversary can transition from initial access to full endpoint compromise by chaining together multiple techniques.
+
+The investigation also highlights the value of correlating endpoint telemetry, authentication events, and network evidence to accurately reconstruct attacker activity throughout the incident.
+
+## 💡 Lessons Learned
+
+This project reinforced the importance of analyzing security incidents through the correlation of multiple telemetry sources rather than relying on isolated events.
+
+Some of the key takeaways from this laboratory include:
+
+- Correlating Windows Security Events with Sysmon telemetry provides greater visibility into attacker activity.
+- Network evidence collected with Wireshark complements endpoint telemetry and helps validate attacker behavior.
+- Mapping observed activity to the MITRE ATT&CK framework improves incident documentation and communication.
+- Building a structured attack timeline simplifies incident investigation and supports faster decision-making during analysis.
+
+Overall, this lab strengthened practical skills in threat detection, event correlation, and incident investigation within a SOC environment.
 
 💡 Conclusion:
 This lab demonstrates how a full attack chain can be reconstructed by correlating events from multiple data sources.
