@@ -71,19 +71,48 @@ Detection & Investigation
 
 The attack begins with a brute-force attempt against a Windows system, followed by successful authentication, privilege escalation, lateral movement via SMB, and remote execution.
 
-The objective is to detect and correlate each stage using the SIEM and network analysis. 🔴 Attack stages
+The objective is to detect and correlate each stage using the SIEM and network analysis. 
 
-Brute force (Event ID 4625)
+🔴 Attack stages
 
-Successful login (Event ID 4624)
+---
 
-Privilege escalation (Event ID 4672)
+## 🕒 Attack Timeline
 
-User creation and persistence (Event ID 4720 / 4732)
+The following timeline summarizes the attack progression observed during the investigation.
 
-Lateral movement via SMB (Port 445)
+```text
+Brute Force
+      │
+      ▼
+Successful Authentication
+      │
+      ▼
+Privilege Escalation
+      │
+      ▼
+Persistence
+      │
+      ▼
+Lateral Movement (SMB)
+      │
+      ▼
+Remote Execution
+      │
+      ▼
+Command & Control (C2)
+```
 
-Remote execution (Event ID 7045 / 4688)
+| Attack Phase | Evidence |
+|--------------|----------|
+| **Brute Force** | Windows Security Event ID 4625 |
+| **Successful Authentication** | Windows Security Event ID 4624 |
+| **Privilege Escalation** | Windows Security Event ID 4672 |
+| **Persistence** | Windows Security Event IDs 4720 / 4732 |
+| **Lateral Movement** | SMB Traffic (TCP/445) |
+| **Remote Execution** | Event ID 4688 / 7045 |
+| **Command & Control** | Sysmon Event ID 3 + Wireshark |
+
 
 📡 Detection approach
 
