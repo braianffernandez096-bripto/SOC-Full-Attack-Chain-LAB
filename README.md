@@ -73,8 +73,6 @@ The attack begins with a brute-force attempt against a Windows system, followed 
 
 The objective is to detect and correlate each stage using the SIEM and network analysis. 
 
-🔴 Attack stages
-
 ---
 
 ## 🕒 Attack Timeline
@@ -113,6 +111,7 @@ Command & Control (C2)
 | **Remote Execution** | Event ID 4688 / 7045 |
 | **Command & Control** | Sysmon Event ID 3 + Wireshark |
 
+---
 
 📡 Detection approach
 
