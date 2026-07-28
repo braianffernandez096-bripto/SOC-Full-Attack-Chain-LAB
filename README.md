@@ -154,6 +154,7 @@ Windows Security Logs
           ▼
 Attack Reconstruction
 
+```
 ---
 
 🧩 MITRE ATT&CK
