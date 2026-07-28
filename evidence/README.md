@@ -6,6 +6,7 @@ The artifacts are organized according to the attack lifecycle, making it easier 
 📁 Evidence Structure
 🟣 Elastic SIEM (Kibana)
 
+```text
 Evidence is organized by attack phase.
 Folder 	Description
 01-brute-force 	Multiple failed authentication attempts (Event ID 4625)
@@ -14,6 +15,7 @@ Folder 	Description
 04-persistence 	Local account creation and administrator group membership (Event IDs 4720 / 4732)
 05-lateral-movement 	SMB-related activity and remote access evidence
 06-remote-execution 	Service creation and process execution (Event IDs 7045 / 4688)
+```
 
 These screenshots illustrate how each stage of the attack was identified and correlated within Elastic SIEM.
 🔵 Wireshark
