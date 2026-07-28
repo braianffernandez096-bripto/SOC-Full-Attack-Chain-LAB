@@ -7,9 +7,7 @@ A SOC lab simulating a full attack chain (detection via Elastic Stack: brute for
 
 📌 Overview
 
-This project simulates a full attack chain from the perspective of a SOC (Security Operations Center), focusing on the detection and analysis of attacker behavior.
-
-The lab was built using Elastic Stack (SIEM), Sysmon, and Winlogbeat, with a Windows 10 endpoint (client machine) and Kali Linux as the attacker machine.
+This project simulates a complete cyber attack chain from the perspective of a Security Operations Center (SOC), focusing on threat detection, event correlation, and incident investigation using the Elastic Stack.
 
 
 ---
