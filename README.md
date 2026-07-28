@@ -95,9 +95,7 @@ Lateral Movement (SMB)
       │
       ▼
 Remote Execution
-      │
-      ▼
-Command & Control (C2)
+
 ```
 
 | Attack Phase | Evidence |
