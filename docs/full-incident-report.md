@@ -51,15 +51,15 @@ This multi-layer correlation confirms attacker activity across the environment.
 
 🔍 Detection Logic
 
-event.code:4625
+event.code: 4625
 
-event.code:4624 AND winlog.event_data.LogonType:3
+event.code: 4624 AND winlog.event_data.LogonType: 3
 
-event.code:4672
+event.code: 4672
 
-event.code:4720 OR event.code:4732
+event.code: 4720 OR event.code: 4732
 
-event.code:7045 OR event.code:4688
+event.code: 7045 OR event.code: 4688
 
 
 
