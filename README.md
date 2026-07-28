@@ -110,15 +110,34 @@ Remote Execution
 
 ---
 
-📡 Detection approach
+---
 
-Detection was performed using:
+## 🔍 Detection Logic
 
-Elastic SIEM (log correlation)
+Rather than relying on a single alert, the investigation focused on correlating multiple telemetry sources to reconstruct the attack chain.
 
-Sysmon (endpoint telemetry)
+The following data sources were analyzed throughout the investigation:
 
-Wireshark (network analysis)
+| Data Source | Purpose |
+|-------------|---------|
+| Windows Security Logs | Authentication events, privilege escalation, account creation |
+| Sysmon | Process creation and network connections |
+| Elastic SIEM | Event correlation and timeline reconstruction |
+| Wireshark | Network traffic validation and protocol analysis |
+
+### Detection Workflow
+
+1. Multiple failed authentication attempts were identified through Windows Security Event ID **4625**.
+
+2. A successful logon (Event ID **4624**) from the same user indicated that valid credentials had been obtained.
+
+3. Administrative privileges were confirmed using Event ID **4672**, suggesting privilege escalation.
+
+4. Account creation events (**4720**) and group membership changes (**4732**) revealed persistence mechanisms.
+
+5. Process creation and network activity collected by Sysmon were correlated with SMB traffic captured in Wireshark to validate remote execution and attacker movement.
+
+This correlation allowed the complete attack chain to be reconstructed with a high level of confidence.
 
 🧩 MITRE ATT&CK
 
