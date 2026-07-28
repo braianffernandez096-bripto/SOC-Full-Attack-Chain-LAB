@@ -240,6 +240,3 @@ Some of the key takeaways from this laboratory include:
 - Building a structured attack timeline simplifies incident investigation and supports faster decision-making during analysis.
 
 Overall, this lab strengthened practical skills in threat detection, event correlation, and incident investigation within a SOC environment.
-
-💡 Conclusion:
-This lab demonstrates how a full attack chain can be reconstructed by correlating events from multiple data sources.
