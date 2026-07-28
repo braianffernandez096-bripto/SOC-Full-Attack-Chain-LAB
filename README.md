@@ -175,6 +175,7 @@ The simulated attack was mapped to the MITRE ATT&CK framework to classify the ad
 ### MITRE Coverage
 
 This laboratory demonstrates how multiple ATT&CK techniques can be identified by correlating endpoint telemetry, authentication events, and network traffic, providing greater visibility into the attack lifecycle.
+
 ---
 
 ## 📊 Skills Demonstrated
