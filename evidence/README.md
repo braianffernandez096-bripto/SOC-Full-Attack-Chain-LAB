@@ -1,64 +1,63 @@
 # 📊 Evidence Overview
 
-This directory contains the evidence collected during the simulated attack investigation.
+This directory contains the evidence collected throughout the simulated attack investigation.
 
-The artifacts included in this repository support the findings documented in the incident report and demonstrate how multiple telemetry sources were correlated to reconstruct the complete attack chain.
+The artifacts are organized according to the attack lifecycle, making it easier to correlate endpoint telemetry, authentication events, and network activity documented in the incident report.
 
 ---
 
-## 📁 Evidence Categories
+## 📁 Evidence Structure
 
 ### 🟣 Elastic SIEM (Kibana)
 
-Evidence collected from Elastic Stack used during the investigation.
+Evidence is organized by attack phase.
 
-Examples include:
+| Folder | Description |
+|--------|-------------|
+| **01-brute-force** | Multiple failed authentication attempts (Event ID 4625) |
+| **02-initial-access** | Successful network logon (Event ID 4624) |
+| **03-privilege-escalation** | Administrative privileges assigned (Event ID 4672) |
+| **04-persistence** | Local account creation and administrator group membership (Event IDs 4720 / 4732) |
+| **05-lateral-movement** | SMB-related activity and remote access evidence |
+| **06-remote-execution** | Service creation and process execution (Event IDs 7045 / 4688) |
 
-- Brute force attempts (Event ID 4625)
-- Successful authentication (Event ID 4624)
-- Privileged logons (Event ID 4672)
-- User creation (Event IDs 4720 / 4732)
-- Process creation (Event ID 4688)
-- Service creation (Event ID 7045)
-
-These screenshots illustrate how authentication, privilege escalation, persistence, and command execution were identified through SIEM correlation.
+These screenshots illustrate how each stage of the attack was identified and correlated within Elastic SIEM.
 
 ---
 
 ### 🔵 Wireshark
 
-Network traffic captured during the attack simulation.
+Network captures collected during the investigation.
 
 Evidence includes:
 
 - SMB communications (TCP/445)
 - Authentication traffic
-- Session establishment
 - Remote administration activity
 
-The captured traffic complements endpoint telemetry and validates attacker movement across the network.
+These captures validate network behavior observed in the SIEM.
 
 ---
 
 ### 🟡 Endpoint Telemetry
 
-Host-based evidence collected through Sysmon and Windows Security Logs.
+Host-based telemetry collected from Sysmon and Windows Security Logs.
 
-Examples include:
+Evidence includes:
 
-- Process execution
-- Service installation
-- Local account creation
-- Privilege assignment
 - Authentication events
+- Process execution
+- Service creation
+- Account creation
+- Privilege assignment
 
-This telemetry provides visibility into attacker actions performed directly on the compromised endpoint.
+This telemetry provides visibility into attacker activity on the compromised endpoint.
 
 ---
 
-## 🔍 Investigation Workflow
+## 🔄 Investigation Workflow
 
-The investigation was performed by correlating multiple telemetry sources rather than relying on individual events.
+The incident was reconstructed by correlating evidence from multiple telemetry sources.
 
 ```text
 Windows Security Logs
@@ -73,7 +72,7 @@ Windows Security Logs
     Wireshark
         │
         ▼
-Attack Reconstruction
+Incident Reconstruction
 ```
 
 ---
@@ -87,6 +86,5 @@ The following information may be partially obfuscated:
 - Internal IP addresses
 - Hostnames
 - Usernames
-- Domain names (if applicable)
 
-This does not affect the integrity of the investigation or the detection logic presented throughout the project.
+The applied sanitization does not affect the integrity of the investigation or the documented detection logic.
