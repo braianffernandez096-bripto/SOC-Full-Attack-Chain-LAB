@@ -158,18 +158,23 @@ Attack Reconstruction
 
 ---
 
-🧩 MITRE ATT&CK
+---
 
-T1110 — Brute Force
+## 🧩 MITRE ATT&CK Mapping
 
-T1078 — Valid Accounts
+The simulated attack was mapped to the MITRE ATT&CK framework to classify the adversary's tactics and techniques observed throughout the investigation.
 
-T1021 — Remote Services
+| Tactic | Technique | MITRE ID | Evidence |
+|--------|-----------|----------|----------|
+| **Credential Access** | Brute Force | **T1110** | Multiple failed authentication attempts (Event ID 4625) |
+| **Initial Access** | Valid Accounts | **T1078** | Successful authentication (Event ID 4624) |
+| **Persistence** | Create Account | **T1136** | Local administrator account created (Event ID 4720) |
+| **Lateral Movement** | Remote Services (SMB) | **T1021.002** | SMB traffic (TCP/445) and remote execution |
+| **Execution** | Command and Scripting Interpreter | **T1059** | Remote process execution (Event ID 4688 / 7045) |
 
-T1059 — Command Execution
+### MITRE Coverage
 
-T1136 — Account Creation
-
+This laboratory demonstrates how multiple ATT&CK techniques can be identified by correlating endpoint telemetry, authentication events, and network traffic, providing greater visibility into the attack lifecycle.
 ---
 
 ## 📊 Skills Demonstrated
