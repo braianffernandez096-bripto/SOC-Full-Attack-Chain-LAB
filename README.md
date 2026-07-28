@@ -11,6 +11,61 @@ This project simulates a full attack chain from the perspective of a SOC (Securi
 
 The lab was built using Elastic Stack (SIEM), Sysmon, and Winlogbeat, with a Windows 10 endpoint (client machine) and Kali Linux as the attacker machine.
 
+
+🏗️ Lab Architecture
+
+The lab was designed to simulate a realistic enterprise environment where endpoint telemetry and network traffic can be collected, centralized, and analyzed through a SIEM.
+
+                 Kali Linux
+                      │
+      SMB / PowerShell / HTTP Simulations
+                      │
+                      ▼
++-----------------------------------------------+
+| Windows 10 Victim                             |
+| • Sysmon                                      |
+| • Winlogbeat                                  |
+| • Windows Security Logs                       |
++-----------------------------------------------+
+                      │
+               Log Collection
+                      │
+                      ▼
++-----------------------------------------------+
+| Ubuntu Server                                 |
+| • Elasticsearch                               |
+| • Kibana                                      |
+| • Elastic Stack                               |
++-----------------------------------------------+
+```
+
+Environment
+
+| Machine | Role | Main Components |
+|----------|------|-----------------|
+| **Kali Linux** | Attacker | Attack simulations (SMB, PowerShell, HTTP) |
+| **Windows 10** | Victim Endpoint | Sysmon, Winlogbeat, Windows Security Logs |
+| **Ubuntu Server** | SIEM Platform | Elasticsearch, Kibana |
+
+Data Flow
+
+```
+Attack Simulation
+        │
+        ▼
+Windows Endpoint
+        │
+Sysmon + Windows Security Logs
+        │
+Winlogbeat
+        │
+Elasticsearch
+        │
+Kibana
+        │
+Detection & Investigation
+```
+
 🧠 Scenario
 
 The attack begins with a brute-force attempt against a Windows system, followed by successful authentication, privilege escalation, lateral movement via SMB, and remote execution.
