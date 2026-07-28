@@ -1,122 +1,170 @@
-🛡️ Incident Report — Full Attack Chain Analysis
+# 🛡️ Incident Report — Full Attack Chain Analysis
 
-📌 Executive Summary
+## 📌 Executive Summary
 
-A security incident was identified involving a complete attack chain against a Windows 10 endpoint.
-The attack started with a brute force attempt, followed by successful authentication, privilege escalation, lateral movement via SMB, and culminated in remote code execution and persistence.
+This report documents the investigation of a simulated multi-stage cyber attack against a Windows 10 endpoint within a controlled SOC laboratory.
 
-The analysis was conducted using Elastic SIEM, Sysmon telemetry, and network traffic inspection via Wireshark.
+The objective of the investigation was to reconstruct the complete attack lifecycle by correlating endpoint telemetry, Windows Security Events, and network evidence collected through Elastic Stack, Sysmon, Winlogbeat, and Wireshark.
 
-🧠 Attack Narrative
+The attack consisted of brute force authentication attempts, successful network authentication, privilege escalation, persistence, lateral movement through SMB, and remote command execution.
 
-The attacker initiated a brute force attack targeting a user account, generating multiple failed authentication attempts.
+---
 
-After successfully obtaining valid credentials, the attacker gained access to the system via network logon.
+## 🎯 Incident Overview
 
-Once inside, elevated privileges were assigned, allowing further actions. The attacker then attempted lateral movement using SMB protocol and administrative shares.
+| Category | Details |
+|----------|---------|
+| **Incident Type** | Multi-Stage Attack Simulation |
+| **Environment** | Windows 10 • Kali Linux • Ubuntu (Elastic Stack) |
+| **Detection Platform** | Elastic Stack (Elasticsearch & Kibana) |
+| **Endpoint Telemetry** | Sysmon + Windows Security Logs |
+| **Log Collection** | Winlogbeat |
+| **Network Analysis** | Wireshark |
+| **Framework** | MITRE ATT&CK |
 
-Subsequently, remote execution was performed through service creation, enabling command execution under SYSTEM privileges.
+---
 
-Finally, persistence was established by creating a new user account and adding it to the administrators group.
+## 🧠 Attack Narrative
 
-🕒 Attack Timeline
+The attacker initiated a brute-force attack against a Windows user account, generating multiple failed authentication attempts.
 
-Stage	Event	Description
+After obtaining valid credentials, a successful network logon was observed, allowing access to the target endpoint.
 
-Brute Force	4625	Multiple failed logons
+Administrative privileges were subsequently assigned, enabling actions beyond the permissions of a standard user.
 
-Initial Access	4624	Successful login (Logon Type 3)
+The attacker established persistence by creating a new local account and adding it to the local Administrators group.
 
-Privilege Escalation	4672	Admin privileges assigned
+Using SMB administrative shares, remote execution was performed through service creation, resulting in command execution on the compromised endpoint.
 
-Persistence	4720 / 4732	User creation + admin group
+The investigation reconstructed every stage of the intrusion by correlating authentication logs, endpoint telemetry, and network traffic.
 
-Lateral Movement	SMB (445)	Access to IPC$ / C$
+---
 
-Remote Execution	7045 / 4688	Service + process execution
+## 🕒 Attack Timeline
 
+| Attack Phase | Evidence | Description |
+|--------------|----------|-------------|
+| **Brute Force** | Event ID **4625** | Multiple failed authentication attempts |
+| **Initial Access** | Event ID **4624** | Successful network logon (Logon Type 3) |
+| **Privilege Escalation** | Event ID **4672** | Administrative privileges assigned |
+| **Persistence** | Event IDs **4720 / 4732** | Local user creation and administrator group membership |
+| **Lateral Movement** | SMB (TCP/445) | Communication through administrative shares |
+| **Remote Execution** | Event IDs **7045 / 4688** | Service creation and process execution |
 
-📡 Evidence Correlation
+---
 
-The incident was validated through multiple data sources:
+## 📊 Investigation Summary
 
-SIEM (Kibana): authentication events, privilege escalation, process execution
+| Investigation Area | Result |
+|--------------------|--------|
+| Brute Force Detection | ✅ Confirmed |
+| Successful Authentication | ✅ Confirmed |
+| Privilege Escalation | ✅ Confirmed |
+| Persistence | ✅ Confirmed |
+| Lateral Movement | ✅ Confirmed |
+| Remote Execution | ✅ Confirmed |
+| Multi-source Correlation | ✅ Successful |
 
-Network (Wireshark): SMB traffic and authentication attempts
+---
 
-Endpoint: service creation and process activity
+## 📡 Evidence Correlation
 
-This multi-layer correlation confirms attacker activity across the environment.
+The investigation combined multiple telemetry sources to validate attacker activity throughout the attack lifecycle.
 
+| Source | Evidence Collected |
+|--------|--------------------|
+| **Elastic SIEM** | Authentication events, privilege escalation, process execution and event correlation |
+| **Windows Security Logs** | Failed logons, successful authentication, privileged logons, account creation |
+| **Sysmon** | Process creation and endpoint activity |
+| **Wireshark** | SMB communications and network validation |
 
-🔍 Detection Logic
+The combination of endpoint telemetry and network evidence enabled a complete reconstruction of the incident.
 
-event.code: 4625
+---
 
-event.code: 4624 AND winlog.event_data.LogonType: 3
+## 🔍 Detection Logic
 
-event.code: 4672
+The following detection queries were used during the investigation.
 
-event.code: 4720 OR event.code: 4732
+| Detection Query | Purpose |
+|-----------------|---------|
+| `event.code:4625` | Detect brute-force authentication attempts |
+| `event.code:4624 AND winlog.event_data.LogonType:3` | Identify successful network logons |
+| `event.code:4672` | Detect privileged logons |
+| `event.code:4720 OR event.code:4732` | Detect persistence through account creation |
+| `event.code:7045 OR event.code:4688` | Identify remote execution through service and process creation |
 
-event.code: 7045 OR event.code: 4688
+---
 
+## 🧩 MITRE ATT&CK Mapping
 
+The observed attacker behavior was mapped to the MITRE ATT&CK framework.
 
-🧩 MITRE ATT&CK Mapping
+| Tactic | Technique | MITRE ID | Evidence |
+|--------|-----------|----------|----------|
+| **Credential Access** | Brute Force | **T1110** | Multiple failed authentication attempts (Event ID 4625) |
+| **Initial Access** | Valid Accounts | **T1078** | Successful authentication (Event ID 4624) |
+| **Persistence** | Create Account | **T1136** | Local administrator account creation (Event ID 4720) |
+| **Lateral Movement** | SMB / Windows Admin Shares | **T1021.002** | SMB communication (TCP/445) |
+| **Execution** | Command and Scripting Interpreter | **T1059** | Remote command execution (Event ID 4688 / 7045) |
 
+---
 
-T1110 — Brute Force
+## 🚨 Impact Assessment
 
-T1078 — Valid Accounts
+The investigation confirmed that the simulated attacker successfully progressed through multiple stages of the attack lifecycle, resulting in a complete compromise of the target endpoint.
 
-T1021 — Remote Services (SMB)
+| Impact | Evidence |
+|--------|----------|
+| **Unauthorized Access** | Successful authentication following multiple failed logons |
+| **Privilege Escalation** | Administrative privileges assigned (Event ID 4672) |
+| **Persistence** | Local administrator account creation |
+| **Lateral Movement** | SMB administrative share activity |
+| **Command Execution** | Service creation and process execution |
 
-T1059 — Command Execution
+The correlation of authentication events, endpoint telemetry, and network traffic provided high confidence in the reconstruction of the attack.
 
-T1136 — Create Account
+---
 
+## 🚨 Incident Severity
 
-🚨 Impact Assessment
+| Severity | Assessment |
+|----------|------------|
+| **High** | Confirmed unauthorized access, privilege escalation, persistence, lateral movement, and remote command execution within the target endpoint. |
 
-The attacker successfully achieved:
+---
 
-Unauthorized access
+## 💡 Lessons Learned
 
-Privilege escalation
+This investigation reinforced the importance of correlating multiple telemetry sources rather than relying on isolated events.
 
-Lateral movement
+Key observations include:
 
-Remote code execution
+- Windows Security Events provide visibility into authentication and privilege-related activity.
+- Sysmon significantly improves endpoint visibility by recording process execution.
+- Network traffic captured with Wireshark complements endpoint telemetry and validates attacker behavior.
+- Mapping observed activity to the MITRE ATT&CK framework improves incident documentation and analyst communication.
+- Building a structured attack timeline simplifies incident reconstruction and supports faster analysis.
 
-Persistence within the system
+---
 
+## 🔐 Recommendations
 
-👉 This represents a full compromise of the endpoint.
+| Recommendation | Objective |
+|---------------|-----------|
+| Implement account lockout policies | Reduce brute-force attacks |
+| Monitor privileged logons (Event ID 4672) | Detect privilege escalation |
+| Restrict SMB administrative shares | Reduce lateral movement opportunities |
+| Monitor service creation events (Event ID 7045) | Detect remote execution |
+| Apply the Principle of Least Privilege | Limit attacker capabilities |
+| Improve SIEM correlation rules | Increase detection coverage and reduce response time |
 
+---
 
-🚨 Incident Severity
+## 📌 Final Assessment
 
-High
+The simulated incident demonstrates how a complete attack chain can be reconstructed through the correlation of endpoint telemetry, authentication events, and network evidence.
 
-Due to confirmed remote execution and persistence mechanisms, the incident represents a critical security breach.
+Rather than relying on individual alerts, the investigation combined multiple data sources to achieve a comprehensive understanding of attacker behavior.
 
-💡 Conclusion
-
-This case demonstrates how a full attack chain can be reconstructed through proper log correlation and multi-source analysis.
-
-The visibility provided by SIEM, endpoint telemetry and network monitoring was essential to identify each stage of the attack.
-
-🔐 Recommendations
-
-Implement account lockout policies to mitigate brute force attacks
-
-Monitor privilege escalation events (Event ID 4672)
-
-Restrict SMB access and administrative shares
-
-Monitor service creation events (Event ID 7045)
-
-Apply least privilege principle
-
-Enhance alerting rules in SIEM
+This project reflects a practical SOC investigation workflow and demonstrates techniques commonly used by Security Operations Center analysts during incident response and threat investigation.
