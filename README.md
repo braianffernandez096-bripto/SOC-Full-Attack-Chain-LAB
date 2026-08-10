@@ -1,6 +1,15 @@
 # SOC-Full-Attack-Chain-LAB
 Full Attack Chain Lab for SOC
 
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+![Platform](https://img.shields.io/badge/Platform-Windows%2010-blue)
+![SIEM](https://img.shields.io/badge/SIEM-Elastic%20Stack-purple)
+![Sysmon](https://img.shields.io/badge/Telemetry-Sysmon-blue)
+![Winlogbeat](https://img.shields.io/badge/Log%20Forwarder-Winlogbeat-orange)
+![KQL](https://img.shields.io/badge/Detection-KQL-blue)
+![MITRE ATT&CK](https://img.shields.io/badge/MITRE%20ATT%26CK-Mapped-red)
+![Wireshark](https://img.shields.io/badge/Network%20Analysis-Wireshark-blue)
+
 A SOC lab simulating a full attack chain (detection via Elastic Stack: brute force, lateral movement, remote execution), featuring:
 
 🛡️ Full Attack Chain Lab for SOC — End-to-End Detection
