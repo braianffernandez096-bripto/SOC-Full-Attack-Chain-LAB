@@ -1,28 +1,28 @@
-# 🔍 KQL Detection Queries
+# 🔍 Consultas de detección KQL
 
-## 📌 Overview
+## 📌 Resumen general
 
-This document contains the KQL (Kibana Query Language) queries used throughout the investigation of the simulated full attack chain.
+Este documento contiene las consultas KQL (Kibana Query Language) usadas a lo largo de la investigación de la cadena de ataque completa simulada.
 
-The detections are organized according to the attack lifecycle and demonstrate how each phase was identified using Elastic SIEM.
+Las detecciones están organizadas según el ciclo de vida del ataque y demuestran cómo se identificó cada fase usando Elastic SIEM.
 
 ---
 
-# 1️⃣ Brute Force
+# 1️⃣ Fuerza bruta
 
-## Objective
+## Objetivo
 
-Detect multiple failed authentication attempts.
+Detectar múltiples intentos de autenticación fallidos.
 
-### Query
+### Consulta
 
 ```kql
 event.code:4625
 ```
 
-### Evidence
+### Evidencia
 
-- Failed logon attempts
+- Intentos de inicio de sesión fallidos
 - Windows Security Event ID 4625
 
 ### MITRE ATT&CK
@@ -31,22 +31,22 @@ event.code:4625
 
 ---
 
-# 2️⃣ Initial Access
+# 2️⃣ Acceso inicial
 
-## Objective
+## Objetivo
 
-Identify successful network authentication.
+Identificar autenticación exitosa vía red.
 
-### Query
+### Consulta
 
 ```kql
 event.code:4624 AND winlog.event_data.LogonType:3
 ```
 
-### Evidence
+### Evidencia
 
-- Successful logon
-- Network Logon (Type 3)
+- Inicio de sesión exitoso
+- Logon de red (Type 3)
 
 ### MITRE
 
@@ -54,21 +54,21 @@ event.code:4624 AND winlog.event_data.LogonType:3
 
 ---
 
-# 3️⃣ Privilege Escalation
+# 3️⃣ Escalada de privilegios
 
-## Objective
+## Objetivo
 
-Detect privileged logons.
+Detectar inicios de sesión con privilegios.
 
-### Query
+### Consulta
 
 ```kql
 event.code:4672
 ```
 
-### Evidence
+### Evidencia
 
-- Administrative privileges assigned
+- Privilegios administrativos asignados
 
 ### MITRE
 
@@ -76,22 +76,22 @@ event.code:4672
 
 ---
 
-# 4️⃣ Persistence
+# 4️⃣ Persistencia
 
-## Objective
+## Objetivo
 
-Detect local account creation.
+Detectar creación de cuentas locales.
 
-### Query
+### Consulta
 
 ```kql
 event.code:(4720 OR 4732)
 ```
 
-### Evidence
+### Evidencia
 
-- User created
-- User added to Administrators group
+- Usuario creado
+- Usuario agregado al grupo Administrators
 
 ### MITRE
 
@@ -99,22 +99,22 @@ event.code:(4720 OR 4732)
 
 ---
 
-# 5️⃣ Remote Execution
+# 5️⃣ Ejecución remota
 
-## Objective
+## Objetivo
 
-Identify service creation and remote process execution.
+Identificar creación de servicios y ejecución remota de procesos.
 
-### Query
+### Consulta
 
 ```kql
 event.code:(7045 OR 4688)
 ```
 
-### Evidence
+### Evidencia
 
-- Service installation
-- Process creation
+- Instalación de servicio
+- Creación de proceso
 
 ### MITRE
 
@@ -122,35 +122,35 @@ event.code:(7045 OR 4688)
 
 ---
 
-# 6️⃣ Account Lockout
+# 6️⃣ Bloqueo de cuenta
 
-## Objective
+## Objetivo
 
-Identify accounts locked due to repeated authentication failures.
+Identificar cuentas bloqueadas por fallos de autenticación repetidos.
 
-### Query
+### Consulta
 
 ```kql
 event.code:4740
 ```
 
-### Evidence
+### Evidencia
 
-- User account locked
+- Cuenta de usuario bloqueada
 
-### Observation
+### Observación
 
-This event demonstrates that the configured account lockout policy successfully mitigated the brute-force attack.
+Este evento demuestra que la política de bloqueo de cuentas configurada mitigó exitosamente el ataque de fuerza bruta.
 
 ---
 
-## 📊 Detection Coverage
+## 📊 Cobertura de detección
 
-| Attack Phase | Event IDs |
-|--------------|-----------|
-| Brute Force | 4625 |
-| Account Lockout | 4740 |
-| Initial Access | 4624 |
-| Privilege Escalation | 4672 |
-| Persistence | 4720 / 4732 |
-| Remote Execution | 7045 / 4688 |
+| Fase del ataque         | Event IDs        |
+|--------------------------|--------------------|
+| Fuerza bruta              | 4625                |
+| Bloqueo de cuenta         | 4740                |
+| Acceso inicial            | 4624                |
+| Escalada de privilegios   | 4672                |
+| Persistencia              | 4720 / 4732         |
+| Ejecución remota          | 7045 / 4688         |
