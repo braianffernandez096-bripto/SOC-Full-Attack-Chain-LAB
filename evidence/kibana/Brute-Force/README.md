@@ -1,15 +1,15 @@
-# Brute Force Evidence
+# Evidencia de fuerza bruta
 
-## Objective
+## Objetivo
 
-Document brute-force authentication attempts and the resulting account lockout.
+Documentar los intentos de autenticación por fuerza bruta y el bloqueo de cuenta resultante.
 
-## Evidence
+## Evidencia
 
-- Event ID 4625 — Multiple failed authentication attempts.
-- Event ID 4740 — User account locked after exceeding the configured threshold.
+- Event ID 4625 — Múltiples intentos de autenticación fallidos.
+- Event ID 4740 — Cuenta de usuario bloqueada tras superar el umbral configurado.
 
-## Detection Queries
+## Consultas de detección
 
 ```kql
 event.code:4625
@@ -23,6 +23,6 @@ event.code:4740
 
 - T1110 — Brute Force
 
-## Observation
+## Observación
 
-The account lockout event confirms that the configured security policy successfully mitigated the brute-force attack by temporarily preventing additional authentication attempts.
+El evento de bloqueo de cuenta confirma que la política de seguridad configurada mitigó exitosamente el ataque de fuerza bruta, impidiendo temporalmente intentos de autenticación adicionales.
