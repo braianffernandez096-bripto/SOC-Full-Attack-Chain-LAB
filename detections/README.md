@@ -1,17 +1,17 @@
-# Detection Rules
+# Reglas de detección
 
-This directory contains the detection queries used throughout the investigation.
+Este directorio contiene las consultas de detección usadas a lo largo de la investigación.
 
-The rules were created to identify each stage of the simulated attack and are based on Windows Security Events and Sysmon telemetry.
+Las reglas fueron creadas para identificar cada etapa del ataque simulado y están basadas en Windows Security Events y telemetría de Sysmon.
 
-## Detection Coverage
+## Cobertura de detección
 
-| Attack Phase | Detection |
-|--------------|-----------|
-| Brute Force | Event ID 4625 |
-| Initial Access | Event ID 4624 |
-| Privilege Escalation | Event ID 4672 |
-| Persistence | Event IDs 4720 / 4732 |
-| Remote Execution | Event IDs 7045 / 4688 |
+| Fase del ataque         | Detección               |
+|--------------------------|--------------------------|
+| Fuerza bruta              | Event ID 4625            |
+| Acceso inicial            | Event ID 4624            |
+| Escalada de privilegios   | Event ID 4672            |
+| Persistencia              | Event IDs 4720 / 4732    |
+| Ejecución remota          | Event IDs 7045 / 4688    |
 
-These queries are intended for educational purposes within this SOC laboratory.
+Estas consultas están destinadas a fines educativos dentro de este laboratorio SOC.
