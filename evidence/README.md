@@ -1,64 +1,61 @@
-# 📊 Evidence Overview
+# 📊 Resumen general de evidencia
 
-This directory contains the evidence collected during the simulated attack investigation.
+Este directorio contiene la evidencia recolectada durante la investigación del ataque simulado.
 
-The artifacts included in this repository support the findings documented in the incident report and demonstrate how multiple telemetry sources were correlated to reconstruct the complete attack chain.
+Los artefactos incluidos en este repositorio respaldan los hallazgos documentados en el informe del incidente y demuestran cómo se correlacionaron múltiples fuentes de telemetría para reconstruir la cadena de ataque completa.
 
 ---
 
-## 📁 Evidence Categories
+## 📁 Categorías de evidencia
 
 ### 🟣 Elastic SIEM (Kibana)
 
-Evidence collected from Elastic Stack used during the investigation.
+Evidencia recolectada desde Elastic Stack usada durante la investigación.
 
-Examples include:
+Ejemplos incluyen:
+- Intentos de fuerza bruta (Event ID 4625)
+- Autenticación exitosa (Event ID 4624)
+- Inicios de sesión con privilegios (Event ID 4672)
+- Creación de usuario (Event IDs 4720 / 4732)
+- Creación de proceso (Event ID 4688)
+- Creación de servicio (Event ID 7045)
 
-- Brute force attempts (Event ID 4625)
-- Successful authentication (Event ID 4624)
-- Privileged logons (Event ID 4672)
-- User creation (Event IDs 4720 / 4732)
-- Process creation (Event ID 4688)
-- Service creation (Event ID 7045)
-
-These screenshots illustrate how authentication, privilege escalation, persistence, and command execution were identified through SIEM correlation.
+Estas capturas ilustran cómo se identificaron la autenticación, escalada de privilegios, persistencia y ejecución de comandos a través de correlación en el SIEM.
 
 ---
 
 ### 🔵 Wireshark
 
-Network traffic captured during the attack simulation.
+Tráfico de red capturado durante la simulación del ataque.
 
-Evidence includes:
+La evidencia incluye:
+- Comunicaciones SMB (TCP/445)
+- Tráfico de autenticación
+- Establecimiento de sesión
+- Actividad de administración remota
 
-- SMB communications (TCP/445)
-- Authentication traffic
-- Session establishment
-- Remote administration activity
-
-The captured traffic complements endpoint telemetry and validates attacker movement across the network.
-
----
-
-### 🟡 Endpoint Telemetry
-
-Host-based evidence collected through Sysmon and Windows Security Logs.
-
-Examples include:
-
-- Process execution
-- Service installation
-- Local account creation
-- Privilege assignment
-- Authentication events
-
-This telemetry provides visibility into attacker actions performed directly on the compromised endpoint.
+El tráfico capturado complementa la telemetría del endpoint y valida el movimiento del atacante a través de la red.
 
 ---
 
-## 🔍 Investigation Workflow
+### 🟡 Telemetría de endpoint
 
-The investigation was performed by correlating multiple telemetry sources rather than relying on individual events.
+Evidencia a nivel de host recolectada a través de Sysmon y Windows Security Logs.
+
+Ejemplos incluyen:
+- Ejecución de procesos
+- Instalación de servicios
+- Creación de cuenta local
+- Asignación de privilegios
+- Eventos de autenticación
+
+Esta telemetría brinda visibilidad sobre las acciones del atacante realizadas directamente en el endpoint comprometido.
+
+---
+
+## 🔍 Flujo de investigación
+
+La investigación se realizó correlacionando múltiples fuentes de telemetría en lugar de depender de eventos individuales.
 
 ```text
 Windows Security Logs
@@ -73,20 +70,19 @@ Windows Security Logs
     Wireshark
         │
         ▼
-Attack Reconstruction
+Reconstrucción del ataque
 ```
 
 ---
 
-## 🔒 Data Handling
+## 🔒 Manejo de datos
 
-To protect sensitive information, selected screenshots have been sanitized.
+Para proteger información sensible, se sanitizaron capturas seleccionadas.
 
-The following information may be partially obfuscated:
+La siguiente información puede estar parcialmente ofuscada:
+- Direcciones IP internas
+- Nombres de host
+- Nombres de usuario
+- Nombres de dominio (si aplica)
 
-- Internal IP addresses
-- Hostnames
-- Usernames
-- Domain names (if applicable)
-
-This does not affect the integrity of the investigation or the detection logic presented throughout the project.
+Esto no afecta la integridad de la investigación ni la lógica de detección presentada a lo largo del proyecto.
