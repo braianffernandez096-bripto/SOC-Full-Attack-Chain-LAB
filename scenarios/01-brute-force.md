@@ -1,10 +1,14 @@
 # 🔴 Ataque de Fuerza Bruta
 ## 📌 Objetivo
+
 Simular un ataque de fuerza bruta contra un endpoint Windows para generar múltiples intentos fallidos de autenticación y validar la capacidad del SIEM para detectar y correlacionar actividad de inicio de sesión sospechosa.
+
 ---
 ## 🧠 Descripción del Ataque
+
 El atacante intentó repetidamente autenticarse en una cuenta de Windows utilizando credenciales inválidas en un corto período de tiempo.
 Esta actividad generó múltiples eventos de inicio de sesión fallidos, proporcionando un indicador claro de comportamiento automatizado de adivinación de contraseñas.
+
 ---
 ## 🔍 Detección
 ### Query de Detección
@@ -34,8 +38,10 @@ event.code:4625
 | **Kibana** | Visualización en línea de tiempo de inicios de sesión fallidos |
 ---
 ## 🚨 Evaluación del Analista
+
 Si bien los intentos fallidos de autenticación aislados son comunes en entornos empresariales, una secuencia sostenida de inicios de sesión fallidos dirigidos a la misma cuenta en un corto período de tiempo es un indicador fuerte de actividad de fuerza bruta.
 En este laboratorio, los eventos generados fueron identificados y correlacionados exitosamente a través de Elastic SIEM, demostrando visibilidad sobre la etapa inicial del ataque.
+
 ---
 ## 💡 Lecciones Aprendidas
 - Los eventos de autenticación fallida proporcionan indicadores valiosos para detectar ataques de contraseñas.
