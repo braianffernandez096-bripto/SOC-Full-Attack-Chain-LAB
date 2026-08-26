@@ -1,72 +1,44 @@
-# 🟠 Initial Access
-
-## 📌 Objective
-
-Simulate successful authentication following a brute-force attack to validate the detection of compromised credentials and identify the transition from failed logon attempts to confirmed access.
-
+# 🟠 Acceso Inicial
+## 📌 Objetivo
+Simular una autenticación exitosa posterior a un ataque de fuerza bruta para validar la detección de credenciales comprometidas e identificar la transición entre intentos de inicio de sesión fallidos y acceso confirmado.
 ---
-
-## 🧠 Attack Description
-
-After multiple failed authentication attempts, the attacker successfully authenticated to the target Windows endpoint using valid credentials.
-
-The successful network logon confirmed that the brute-force attack resulted in unauthorized access to the system.
-
+## 🧠 Descripción del Ataque
+Después de múltiples intentos fallidos de autenticación, el atacante logró autenticarse exitosamente en el endpoint Windows objetivo utilizando credenciales válidas.
+El inicio de sesión de red exitoso confirmó que el ataque de fuerza bruta resultó en un acceso no autorizado al sistema.
 ---
-
-## 🔍 Detection
-
-### Detection Query
-
+## 🔍 Detección
+### Query de Detección
 ```kql
 event.code:4624 AND winlog.event_data.LogonType:3
 ```
-
-### Evidence
-
-- Successful network authentication
-- Logon Type 3 (Network Logon)
-- Authentication following repeated failed logon attempts
-
+### Evidencia
+- Autenticación de red exitosa
+- Logon Type 3 (Inicio de Sesión de Red)
+- Autenticación posterior a intentos repetidos de inicio de sesión fallidos
 ---
-
-## 📊 Indicators of Compromise (IOC)
-
-- Successful authentication after multiple failed attempts
-- Network logon (Type 3)
-- Access obtained using valid credentials
-- Authentication sequence consistent with brute-force compromise
-
+## 📊 Indicadores de Compromiso (IOC)
+- Autenticación exitosa después de múltiples intentos fallidos
+- Inicio de sesión de red (Type 3)
+- Acceso obtenido utilizando credenciales válidas
+- Secuencia de autenticación consistente con un compromiso por fuerza bruta
 ---
-
-## 🧩 MITRE ATT&CK Mapping
-
-| Tactic | Technique | MITRE ID |
+## 🧩 Mapeo MITRE ATT&CK
+| Táctica | Técnica | ID MITRE |
 |--------|-----------|-----------|
 | **Initial Access** | Valid Accounts | **T1078** |
-
 ---
-
-## 📡 Evidence Sources
-
-| Source | Evidence |
+## 📡 Fuentes de Evidencia
+| Fuente | Evidencia |
 |--------|----------|
-| **Windows Security Logs** | Event ID 4624 (Successful Logon) |
-| **Elastic SIEM** | Authentication event correlation |
-| **Kibana** | Timeline showing successful authentication following failed logons |
-
+| **Windows Security Logs** | Event ID 4624 (Inicio de Sesión Exitoso) |
+| **Elastic SIEM** | Correlación de eventos de autenticación |
+| **Kibana** | Línea de tiempo mostrando autenticación exitosa posterior a inicios de sesión fallidos |
 ---
-
-## 🚨 Analyst Assessment
-
-The successful network logon confirms that the attacker obtained valid credentials and gained unauthorized access to the target system.
-
-When correlated with the preceding failed authentication attempts (Event ID 4625), this event represents the transition from a credential attack to a confirmed compromise.
-
+## 🚨 Evaluación del Analista
+El inicio de sesión de red exitoso confirma que el atacante obtuvo credenciales válidas y logró un acceso no autorizado al sistema objetivo.
+Al correlacionarse con los intentos fallidos de autenticación previos (Event ID 4625), este evento representa la transición de un ataque de credenciales a un compromiso confirmado.
 ---
-
-## 💡 Lessons Learned
-
-- Successful logon events should always be analyzed in the context of preceding authentication activity.
-- Correlating Event IDs 4625 and 4624 significantly improves the detection of successful brute-force attacks.
-- Monitoring network logons helps identify unauthorized remote access to Windows systems.
+## 💡 Lecciones Aprendidas
+- Los eventos de inicio de sesión exitosos siempre deben analizarse en el contexto de la actividad de autenticación previa.
+- Correlacionar los Event ID 4625 y 4624 mejora significativamente la detección de ataques de fuerza bruta exitosos.
+- Monitorear los inicios de sesión de red ayuda a identificar accesos remotos no autorizados a sistemas Windows.
