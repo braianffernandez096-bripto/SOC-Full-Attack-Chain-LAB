@@ -1,72 +1,50 @@
-# 🟣 Persistence
+# 🟣 Persistencia
+## 📌 Objetivo
 
-## 📌 Objective
-
-Simulate persistence by creating a new local user account and adding it to the local Administrators group, validating the detection of unauthorized account creation and privileged group membership.
-
----
-
-## 🧠 Attack Description
-
-After obtaining administrative privileges, the attacker established persistence by creating a new local user account and assigning it administrative permissions.
-
-This technique allows continued access to the compromised system even if the original credentials are revoked or the initial attack vector is remediated.
+Simular persistencia mediante la creación de una nueva cuenta de usuario local y su incorporación al grupo local de Administradores, validando la detección de creación de cuentas no autorizadas y membresía en grupos privilegiados.
 
 ---
+## 🧠 Descripción del Ataque
 
-## 🔍 Detection
+Después de obtener privilegios administrativos, el atacante estableció persistencia creando una nueva cuenta de usuario local y asignándole permisos administrativos.
+Esta técnica permite el acceso continuo al sistema comprometido incluso si las credenciales originales son revocadas o el vector de ataque inicial es remediado.
 
-### Detection Query
-
+---
+## 🔍 Detección
+### Query de Detección
 ```kql
 event.code:(4720 OR 4732)
 ```
-
-### Evidence
-
-- New local user account created (Event ID 4720)
-- User added to the local Administrators group (Event ID 4732)
-
+### Evidencia
+- Nueva cuenta de usuario local creada (Event ID 4720)
+- Usuario agregado al grupo local de Administradores (Event ID 4732)
 ---
-
-## 📊 Indicators of Compromise (IOC)
-
-- Unauthorized local account creation
-- User added to the Administrators group
-- Newly created privileged account
-- Administrative account not following normal provisioning procedures
-
+## 📊 Indicadores de Compromiso (IOC)
+- Creación de cuenta local no autorizada
+- Usuario agregado al grupo de Administradores
+- Cuenta privilegiada recién creada
+- Cuenta administrativa que no sigue los procedimientos normales de aprovisionamiento
 ---
-
-## 🧩 MITRE ATT&CK Mapping
-
-| Tactic | Technique | MITRE ID |
+## 🧩 Mapeo MITRE ATT&CK
+| Táctica | Técnica | ID MITRE |
 |--------|-----------|-----------|
 | **Persistence** | Create Account | **T1136** |
-
 ---
-
-## 📡 Evidence Sources
-
-| Source | Evidence |
+## 📡 Fuentes de Evidencia
+| Fuente | Evidencia |
 |--------|----------|
-| **Windows Security Logs** | Event IDs 4720 and 4732 |
-| **Elastic SIEM** | Detection of account creation and group membership events |
-| **Kibana** | Correlation of persistence-related activity |
+| **Windows Security Logs** | Event ID 4720 y 4732 |
+| **Elastic SIEM** | Detección de eventos de creación de cuenta y membresía de grupo |
+| **Kibana** | Correlación de actividad relacionada con persistencia |
+---
+## 🚨 Evaluación del Analista
+
+La creación de una nueva cuenta local privilegiada indica un intento de establecer acceso a largo plazo al endpoint comprometido.
+Aunque la creación de cuentas administrativas puede ser legítima en entornos empresariales, la creación inesperada de una cuenta seguida de su asignación inmediata al grupo de Administradores debe considerarse altamente sospechosa, particularmente cuando se correlaciona con eventos previos de autenticación, escalada de privilegios y movimiento lateral.
 
 ---
-
-## 🚨 Analyst Assessment
-
-The creation of a new privileged local account indicates an attempt to establish long-term access to the compromised endpoint.
-
-Although administrative account creation can be legitimate in enterprise environments, unexpected account creation followed by immediate assignment to the Administrators group should be considered highly suspicious, particularly when correlated with previous authentication, privilege escalation, and lateral movement events.
-
----
-
-## 💡 Lessons Learned
-
-- Monitoring local account creation is essential for detecting persistence mechanisms.
-- Administrative group membership changes should be closely monitored and validated.
-- Correlating account creation with previous attack stages significantly improves investigation accuracy.
-- Persistence techniques often appear after attackers have obtained privileged access, making event correlation critical during incident response.
+## 💡 Lecciones Aprendidas
+- Monitorear la creación de cuentas locales es esencial para detectar mecanismos de persistencia.
+- Los cambios en la membresía de grupos administrativos deben monitorearse y validarse de cerca.
+- Correlacionar la creación de cuentas con etapas previas del ataque mejora significativamente la precisión de la investigación.
+- Las técnicas de persistencia suelen aparecer después de que los atacantes obtienen acceso privilegiado, lo que hace que la correlación de eventos sea crítica durante la respuesta a incidentes.
