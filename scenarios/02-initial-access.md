@@ -2,10 +2,13 @@
 ## 📌 Objetivo
 
 Simular una autenticación exitosa posterior a un ataque de fuerza bruta para validar la detección de credenciales comprometidas e identificar la transición entre intentos de inicio de sesión fallidos y acceso confirmado.
+
 ---
 ## 🧠 Descripción del Ataque
+
 Después de múltiples intentos fallidos de autenticación, el atacante logró autenticarse exitosamente en el endpoint Windows objetivo utilizando credenciales válidas.
 El inicio de sesión de red exitoso confirmó que el ataque de fuerza bruta resultó en un acceso no autorizado al sistema.
+
 ---
 ## 🔍 Detección
 ### Query de Detección
@@ -36,8 +39,10 @@ event.code:4624 AND winlog.event_data.LogonType:3
 | **Kibana** | Línea de tiempo mostrando autenticación exitosa posterior a inicios de sesión fallidos |
 ---
 ## 🚨 Evaluación del Analista
+
 El inicio de sesión de red exitoso confirma que el atacante obtuvo credenciales válidas y logró un acceso no autorizado al sistema objetivo.
 Al correlacionarse con los intentos fallidos de autenticación previos (Event ID 4625), este evento representa la transición de un ataque de credenciales a un compromiso confirmado.
+
 ---
 ## 💡 Lecciones Aprendidas
 - Los eventos de inicio de sesión exitosos siempre deben analizarse en el contexto de la actividad de autenticación previa.
