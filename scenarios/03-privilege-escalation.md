@@ -1,76 +1,50 @@
-# 🟡 Privilege Escalation
+# 🟡 Escalada de Privilegios
+## 📌 Objetivo
 
-## 📌 Objective
-
-Simulate the use of elevated privileges following successful authentication and validate the detection of privileged sessions through Windows Security Events.
-
----
-
-## 🧠 Attack Description
-
-After successfully authenticating to the target system, the attacker gained access to a privileged account.
-
-Windows generated a Special Logon event (Event ID 4672), indicating that the authenticated session was granted administrative privileges.
-
-This event represents a significant increase in the attacker's capabilities, enabling actions such as persistence, remote execution, and lateral movement.
+Simular el uso de privilegios elevados posterior a una autenticación exitosa y validar la detección de sesiones privilegiadas a través de Windows Security Events.
 
 ---
+## 🧠 Descripción del Ataque
 
-## 🔍 Detection
+Después de autenticarse exitosamente en el sistema objetivo, el atacante obtuvo acceso a una cuenta privilegiada.
+Windows generó un evento Special Logon (Event ID 4672), indicando que la sesión autenticada recibió privilegios administrativos.
+Este evento representa un aumento significativo en las capacidades del atacante, habilitando acciones como persistencia, ejecución remota y movimiento lateral.
 
-### Detection Query
-
+---
+## 🔍 Detección
+### Query de Detección
 ```kql
 event.code:4672
 ```
-
-### Evidence
-
-- Special Logon event (Event ID 4672)
-- Administrative privileges assigned
-- Privileged user session established
-
+### Evidencia
+- Evento Special Logon (Event ID 4672)
+- Privilegios administrativos asignados
+- Sesión de usuario privilegiada establecida
 ---
-
-## 📊 Indicators of Compromise (IOC)
-
-- Privileged logon session
-- Administrative privileges assigned
-- Elevated user context
-- Authentication sequence consistent with privileged access
-
+## 📊 Indicadores de Compromiso (IOC)
+- Sesión de inicio de sesión privilegiada
+- Privilegios administrativos asignados
+- Contexto de usuario elevado
+- Secuencia de autenticación consistente con acceso privilegiado
 ---
-
-## 🧩 MITRE ATT&CK Mapping
-
-| Tactic | Technique | MITRE ID |
+## 🧩 Mapeo MITRE ATT&CK
+| Táctica | Técnica | ID MITRE |
 |--------|-----------|-----------|
 | **Defense Evasion / Persistence / Privilege Context** | Valid Accounts | **T1078** |
-
-> **Note:** Event ID 4672 indicates that a session received special privileges. In this laboratory, it is correlated with the previous successful authentication (Event ID 4624) to demonstrate the attacker's transition to a privileged context.
-
+> **Nota:** El Event ID 4672 indica que una sesión recibió privilegios especiales. En este laboratorio, se correlaciona con la autenticación exitosa previa (Event ID 4624) para demostrar la transición del atacante hacia un contexto privilegiado.
 ---
-
-## 📡 Evidence Sources
-
-| Source | Evidence |
+## 📡 Fuentes de Evidencia
+| Fuente | Evidencia |
 |--------|----------|
 | **Windows Security Logs** | Event ID 4672 (Special Logon) |
-| **Elastic SIEM** | Detection of privileged logon events |
-| **Kibana** | Correlation of authentication and privilege assignment |
-
+| **Elastic SIEM** | Detección de eventos de inicio de sesión privilegiados |
+| **Kibana** | Correlación de autenticación y asignación de privilegios |
 ---
-
-## 🚨 Analyst Assessment
-
-The Special Logon event confirms that the authenticated account received elevated privileges within the operating system.
-
-Although Event ID 4672 alone does not indicate malicious activity, its correlation with the successful authentication event and the subsequent attack stages provides strong evidence that the attacker operated with administrative privileges.
-
+## 🚨 Evaluación del Analista
+El evento Special Logon confirma que la cuenta autenticada recibió privilegios elevados dentro del sistema operativo.
+Aunque el Event ID 4672 por sí solo no indica actividad maliciosa, su correlación con el evento de autenticación exitosa y las etapas posteriores del ataque proporciona evidencia sólida de que el atacante operó con privilegios administrativos.
 ---
-
-## 💡 Lessons Learned
-
-- Privileged logon events should always be investigated within the context of the complete authentication sequence.
-- Correlating Event IDs 4624 and 4672 helps identify potentially compromised privileged accounts.
-- Monitoring administrative sessions provides early visibility into attacker activity before persistence or lateral movement occurs.
+## 💡 Lecciones Aprendidas
+- Los eventos de inicio de sesión privilegiados siempre deben investigarse dentro del contexto de la secuencia completa de autenticación.
+- Correlacionar los Event ID 4624 y 4672 ayuda a identificar cuentas privilegiadas potencialmente comprometidas.
+- Monitorear las sesiones administrativas proporciona visibilidad temprana sobre la actividad del atacante antes de que ocurra persistencia o movimiento lateral.
