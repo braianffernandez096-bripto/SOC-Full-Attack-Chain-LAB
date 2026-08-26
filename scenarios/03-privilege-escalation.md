@@ -41,8 +41,10 @@ event.code:4672
 | **Kibana** | Correlación de autenticación y asignación de privilegios |
 ---
 ## 🚨 Evaluación del Analista
+
 El evento Special Logon confirma que la cuenta autenticada recibió privilegios elevados dentro del sistema operativo.
 Aunque el Event ID 4672 por sí solo no indica actividad maliciosa, su correlación con el evento de autenticación exitosa y las etapas posteriores del ataque proporciona evidencia sólida de que el atacante operó con privilegios administrativos.
+
 ---
 ## 💡 Lecciones Aprendidas
 - Los eventos de inicio de sesión privilegiados siempre deben investigarse dentro del contexto de la secuencia completa de autenticación.
