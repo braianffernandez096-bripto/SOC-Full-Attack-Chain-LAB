@@ -1,71 +1,43 @@
-# 🔴 Brute Force Attack
-
-## 📌 Objective
-
-Simulate a brute-force attack against a Windows endpoint to generate multiple failed authentication attempts and validate the ability of the SIEM to detect and correlate suspicious login activity.
-
+# 🔴 Ataque de Fuerza Bruta
+## 📌 Objetivo
+Simular un ataque de fuerza bruta contra un endpoint Windows para generar múltiples intentos fallidos de autenticación y validar la capacidad del SIEM para detectar y correlacionar actividad de inicio de sesión sospechosa.
 ---
-
-## 🧠 Attack Description
-
-The attacker repeatedly attempted to authenticate to a Windows account using invalid credentials within a short period of time.
-
-This activity generated multiple failed logon events, providing a clear indicator of automated password guessing behavior.
-
+## 🧠 Descripción del Ataque
+El atacante intentó repetidamente autenticarse en una cuenta de Windows utilizando credenciales inválidas en un corto período de tiempo.
+Esta actividad generó múltiples eventos de inicio de sesión fallidos, proporcionando un indicador claro de comportamiento automatizado de adivinación de contraseñas.
 ---
-
-## 🔍 Detection
-
-### Detection Query
-
+## 🔍 Detección
+### Query de Detección
 ```kql
 event.code:4625
 ```
-
-### Evidence
-
-- Multiple failed authentication attempts
-- Repeated logons targeting the same user account
-- High authentication frequency over a short time interval
-
+### Evidencia
+- Múltiples intentos fallidos de autenticación
+- Inicios de sesión repetidos dirigidos a la misma cuenta de usuario
+- Alta frecuencia de autenticación en un intervalo corto de tiempo
 ---
-
-## 📊 Indicators of Compromise (IOC)
-
-- High volume of failed logon attempts
-- Repeated authentication failures against the same account
-- Authentication events occurring within a short timeframe
-
+## 📊 Indicadores de Compromiso (IOC)
+- Alto volumen de intentos fallidos de inicio de sesión
+- Fallos de autenticación repetidos contra la misma cuenta
+- Eventos de autenticación ocurridos en un marco temporal corto
 ---
-
-## 🧩 MITRE ATT&CK Mapping
-
-| Tactic | Technique | MITRE ID |
+## 🧩 Mapeo MITRE ATT&CK
+| Táctica | Técnica | ID MITRE |
 |--------|-----------|-----------|
 | **Credential Access** | Brute Force | **T1110** |
-
 ---
-
-## 📡 Evidence Sources
-
-| Source | Evidence |
+## 📡 Fuentes de Evidencia
+| Fuente | Evidencia |
 |--------|----------|
 | **Windows Security Logs** | Event ID 4625 |
-| **Elastic SIEM** | Authentication event correlation |
-| **Kibana** | Timeline visualization of failed logons |
-
+| **Elastic SIEM** | Correlación de eventos de autenticación |
+| **Kibana** | Visualización en línea de tiempo de inicios de sesión fallidos |
 ---
-
-## 🚨 Analyst Assessment
-
-While isolated failed authentication attempts are common in enterprise environments, a sustained sequence of failed logons targeting the same account within a short period is a strong indicator of brute-force activity.
-
-In this laboratory, the generated events were successfully identified and correlated through Elastic SIEM, demonstrating visibility into the initial stage of the attack.
-
+## 🚨 Evaluación del Analista
+Si bien los intentos fallidos de autenticación aislados son comunes en entornos empresariales, una secuencia sostenida de inicios de sesión fallidos dirigidos a la misma cuenta en un corto período de tiempo es un indicador fuerte de actividad de fuerza bruta.
+En este laboratorio, los eventos generados fueron identificados y correlacionados exitosamente a través de Elastic SIEM, demostrando visibilidad sobre la etapa inicial del ataque.
 ---
-
-## 💡 Lessons Learned
-
-- Failed authentication events provide valuable indicators for detecting password attacks.
-- Correlating authentication attempts over time significantly improves detection accuracy.
-- Proper account lockout policies help mitigate brute-force attacks before successful compromise.
+## 💡 Lecciones Aprendidas
+- Los eventos de autenticación fallida proporcionan indicadores valiosos para detectar ataques de contraseñas.
+- Correlacionar intentos de autenticación a lo largo del tiempo mejora significativamente la precisión de la detección.
+- Políticas adecuadas de bloqueo de cuenta ayudan a mitigar ataques de fuerza bruta antes de un compromiso exitoso.
