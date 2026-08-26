@@ -1,5 +1,6 @@
 # 🟠 Acceso Inicial
 ## 📌 Objetivo
+
 Simular una autenticación exitosa posterior a un ataque de fuerza bruta para validar la detección de credenciales comprometidas e identificar la transición entre intentos de inicio de sesión fallidos y acceso confirmado.
 ---
 ## 🧠 Descripción del Ataque
